@@ -3,7 +3,23 @@
 <body>
 <h1>Hello World</h1>
 <p>I'm hosted with GitHub Pages.</p>
-<iframe width="100%" height="635" frameborder="0"
-  src="https://observablehq.com/embed/@d3/sortable-bar-chart?cell=viewof+order&cell=chart"></iframe>
+<script>
+var map = new maplibregl.Map({
+	container: 'map',
+	style: 'https://basemaps.cartocdn.com/gl/voyager-gl-style/style.json',
+	center: [0,0],
+	zoom: 0
+	});
+map.on('load', function(){
+	map.addLayer({
+		'id': 'worldQuakes',
+		'type': 'circle',
+		'source': 'earthquakes'})
+		})
+map.addSource('earthquakes', {
+	type: 'geojson',
+	data: 'https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_month.geojson'
+	})
+</script>
 </body>
 </html>
